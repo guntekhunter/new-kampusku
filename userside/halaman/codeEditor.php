@@ -1,3 +1,4 @@
+<?php $current_page = 'index'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/code-editor.css">
     <link rel="stylesheet" href="../../serverside/assets/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" type="text/css" href="https://didasoff.github.io/codemirror-documentation/main-dark-codemirror.css">
     <script type="text/javascript" src="https://codemirror.net/lib/codemirror.js"></script>
     <script type="text/javascript" src="https://codemirror.net/mode/xml/xml.js"></script>
@@ -20,14 +22,30 @@
     <header>
         <nav>
             <h1 style="cursor:context-menu">KampusKu</h1>
-            <ul>
-                <li><a class="<?= $current_page == 'index' ? 'aktif' : '' ?>" href="../halaman/index.php">Home</a></li>
-                <li><a class="<?= $current_page == 'artikel' ? 'aktif' : '' ?>" href="../halaman/artikel.php">Artikel</a></li>
-                <li><a class="<?= $current_page == 'tutorial' ? 'aktif' : '' ?>" href="../halaman/tutorial.php">Tutorial</a></li>
-                <li><a class="<?= $current_page == 'codeEditor' ? 'aktif' : '' ?>" href="../halaman/codeEditor.php">Code editor</a></li>
-            </ul>
+            <nav class="nav" id="nav-menu">
+                <ion-icon name="close" class="header-close" id="close-menu"></ion-icon>
+                <ul class="nav-list">
+                    <li><a class="<?= $current_page == 'index' ? 'aktif' : '' ?>" href="../halaman/index.php">Home</a></li>
+                    <li><a class="<?= $current_page == 'artikel' ? 'aktif' : '' ?>" href="../halaman/artikel.php">Artikel</a></li>
+                    <li><a class="<?= $current_page == 'tutorial' ? 'aktif' : '' ?>" href="../halaman/tutorial.php">Tutorial</a></li>
+                    <li><a class="<?= $current_page == 'codeEditor' ? 'aktif' : '' ?>" href="../halaman/codeEditor.php">Code editor</a></li>
+                </ul>
+            </nav>
+            <ion-icon name="menu" class="header-toggle" id="togle-menu"></ion-icon>
         </nav>
     </header>
+    <script>
+        const navMenu = document.getElementById('nav-menu'),
+            toggleMenu = document.getElementById('togle-menu'),
+            closeMenu = document.getElementById('close-menu');
+
+        toggleMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('show')
+        })
+        closeMenu.addEventListener('click', () => {
+            navMenu.classList.remove('show')
+        })
+    </script>
     <!-- end of header -->
     <div class="editor">
         <div class="text-editor">

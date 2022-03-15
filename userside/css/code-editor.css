@@ -37,6 +37,9 @@ nav ul li a{
     text-decoration: none;
     display: block;
 }
+.nav{
+    justify-content:right;
+}
 nav ul li a::after{
     content: "";
     position:absolute;
@@ -54,6 +57,10 @@ nav ul li a:hover{
 nav ul li a:hover:after{
     width:100%;
 
+}
+.header-toggle, 
+.header-close{
+    display: none;
 }
 /* end of header */
 .editor{

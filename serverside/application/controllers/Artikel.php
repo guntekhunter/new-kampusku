@@ -50,8 +50,3 @@ class Artikel extends CI_Controller
         }
     }
 }
-// $data=[
-//                 'judul' => htmlspecialchars($this->input->post('judul', true)),
-//                 'isi' => htmlspecialchars($this->input->post('isi', true)),
-//                 'gambar' => 'default.jpg',
-//             ]

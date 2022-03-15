@@ -1,0 +1,54 @@
+@media  screen and (max-width: 800px){
+    h1{
+        font-size: 1.3rem;
+    }
+    nav{
+        width: 90%;
+    }
+    .header-toggle{
+        display: inline;
+        color: #242734;
+        font-size: 24px;
+    }
+    .header-close{
+        position: absolute;
+        right: 18px;
+        top: 1rem;
+        display: block;
+        font-size: 24px;
+        border-radius: 50%;
+        margin-top: .4rem;
+    }
+    .header-close:hover{
+        color: #FD9388;
+    }
+    .nav{
+        position: fixed;
+        top: 0;
+        right: -1000px;
+        display: flex;
+        justify-content:center;
+        align-items: top;
+        background: white;
+        width: 60%;
+        height: 100vh;
+        padding: 24px;
+        z-index: 100;
+        transition: 0,3s;
+        border-radius: 0 0 0 50%;
+        box-shadow:-5px 10px 10px #88888833;
+    }
+    .nav-list{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+    }
+    .nav-item{
+        margin: 2rem 0;
+    }
+    .show{
+        right: 0;
+    }
+    
+}

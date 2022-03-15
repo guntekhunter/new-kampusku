@@ -9,23 +9,23 @@
 
 
     <?= $this->session->flashdata('message'); ?>
-    <?= form_open("Tutorial") ?>
-    <select name="id">
-        <option value="">Pilih Bahasa</option>
+    <?= form_open("Materi") ?>
+    <select name="id" style="margin-right:1rem;">
+        <option value="">Pilih Jurusan</option>
         <?php if (count($ommaleka)) : ?>
             <?php foreach ($ommaleka as $t) : ?>
-                <option value='<?= $t->id ?>' href="#"><?= $t->nama ?></option>
+                <option value='<?= $t->id ?>' href="#"><?= $t->nama_jurusan ?></option>
             <?php endforeach; ?>
         <?php else : ?>
         <?php endif; ?>
     </select>
-    <?= form_submit(['name' => 'submit', 'value' => 'Pilih Bahasa', 'class' => 'btn btn-primary']); ?>
+    <?= form_submit(['name' => 'submit', 'value' => 'Pilih Jurusan', 'class' => 'btn btn-primary']); ?>
     <?= form_close(); ?>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
     </div>
-    <a href="" class="btn btn-primary mb-3 mt-3" data-toggle="modal" data-target="#newMenuModal">Tambah Bahasa</a>
+    <a href="" class="btn btn-primary mb-3 mt-3" data-toggle="modal" data-target="#newMenuModal">Tambah jurusan</a>
 
     <div class="row pt-2">
         <!-- kanan -->
@@ -36,10 +36,10 @@
                 <div class="card-header py-3">
                     <?php if (count($dapat)) : ?>
                         <?php foreach ($dapat as $d) : ?>
-                            <h6 class="m-0 font-weight-bold text-primary"><?= $d->nama; ?></h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><?= $d->nama_jurusan; ?></h6>
                         <?php endforeach; ?>
                     <?php else : ?>
-                        <h6>Pilih bahasa terlebih dahulu</h6>
+                        <h6>Pilih bahasa jurusan terlebih dahulu</h6>
                     <?php endif; ?>
                 </div>
                 <div class="card-body">
@@ -57,7 +57,7 @@
                                 <?php foreach ($coba as $t) : ?>
                                     <tr>
                                         <th scope="row"><?= $i; ?></th>
-                                        <th><?= $t->judul; ?></th>
+                                        <th><?= $t->file_judul; ?></th>
                                         <td>
                                             <a href="" class="badge badge-success mr-2 p-2">edit</a>
                                             <a href="" class="badge badge-danger p-2">delete</a>
@@ -87,22 +87,18 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample">
                     <div class="card-body">
-                        <?= form_error('nama', '<div class="alert alert-danger" role="alert">
-                ', '</div>') ?>
-                        <?= form_error('url', '<div class="alert alert-danger" role="alert">
-                ', '</div>') ?>
-                        <?= form_open_multipart('tutorial/materi'); ?>
+                        <?= form_open_multipart('materi/ambil'); ?>
 
 
                         <div class="form-group">
-                            <label for="judul" class="pl-3">Bahasa</label>
+                            <label for="judul" class="pl-3">Jurusan</label>
                             <div class="col-sm-12 mb-3 mb-sm-0">
                                 <?php if (count($dapat)) : ?>
                                     <?php if (count($id)) : ?>
                                         <?php foreach ($dapat as $d) : ?>
                                             <?php foreach ($id as $i) : ?>
                                                 <input type="hidden" name='id' id='id' class="form-control " autocomplete="off" value="<?= $i->id; ?>">
-                                                <input type="text" class="form-control " autocomplete="off" value="<?= $d->nama; ?>" readonly>
+                                                <input type="text" class="form-control " autocomplete="off" value="<?= $d->nama_jurusan; ?>" readonly>
                                             <?php endforeach ?>
                                         <?php endforeach ?>
                                     <?php else : ?>
@@ -115,14 +111,26 @@
                         <div class="form-group">
                             <label for="judul" class="pl-3">Nama materi</label>
                             <div class="col-sm-12 mb-3 mb-sm-0">
-                                <input type="text" name='nama' id='nama' class="form-control " autocomplete="off">
+                                <input type="text" name='nama' id='nama' class="form-control " autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="judul" class="pl-3">Deskripsi</label>
+                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                <textarea type="text" name='deskripsi' id='deskripsi' class="form-control " autocomplete="off" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display:none;">
+                            <label for="judul" class="pl-3">User</label>
+                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                <input type="text" name='user' id='user' class="form-control " autocomplete="off" required value="<?= $user['name']; ?>">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="judul" class="pl-3">Url video</label>
                             <div class="col-sm-12 mb-3 mb-sm-0">
-                                <input type="text" name='url' id='url' class="form-control " autocomplete="off">
+                                <input type="file" name='url' id='url' class="form-control ">
                             </div>
                         </div>
 
@@ -136,7 +144,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
@@ -145,21 +152,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="newMenuModalLabel">Add New Menu</h5>
+                    <h5 class="modal-title" id="newMenuModalLabel">Tambah Jurusan jurusan</h5>
 
                 </div>
-                <?= form_open_multipart('tutorial'); ?>
+                <?= form_open_multipart('materi'); ?>
                 <div class="form-group">
-                    <label for="judul" class="pl-3">Nama bahasa</label>
+                    <label for="judul" class="pl-3">Nama Jurusan</label>
                     <div class="col-sm-3 mb-3 mb-sm-0">
-                        <input type="text" name='nama' id='nama' class="form-control " autocomplete="off">
+                        <input type="text" name='nama' id='nama' class="form-control " autocomplete="off" required>
                     </div>
                 </div>
 
                 <div class="form-group ml-2">
                     <label for="judul" class="ml-3">Gambar</label>
                     <div class="col-sm-3 mb-3 mb-sm-0 p-0">
-                        <input type="file" name='userfile' size='20' id='gambar' class="form-control " autocomplete="off" required="">
+                        <input type="file" name='userfile' size='20' id='gambar' class="form-control " autocomplete="off" required>
                     </div>
 
                     <div class="ml-2 modal-footer">

@@ -169,3 +169,72 @@ a h3{
     position: absolute;
     background: red;
 }
+
+/* isi materinya */
+.card-materi{
+    text-align: center;
+    font-weight: bold;
+    background: #FD9388;
+    color: white;
+    width: 20%;
+    padding: .5rem 0rem;
+    justify-content: center;
+    display: flex;
+}
+.card-materi:hover{
+    transform: scale(1.01);
+    box-shadow: .2px .2px 4px rgba(0, 0, 0, 0.205);
+    transition-duration: .2s;
+}
+
+.card-file{
+    display: flex;
+    padding: 0;
+    width: 100%;
+    justify-content: space-between;
+}
+.card-container-file{
+    box-shadow: .2rem .2rem .4rem rgba(0, 0, 0, 0.205);
+    display: flex;
+    column-gap: 1.5rem;
+    padding: 1rem;
+    width: 30%;
+    justify-content: space-between;
+}
+
+.card-file p{
+    display: flex;
+    text-align: left;
+}
+.card-file img{
+    width: 2rem;
+    height: auto;
+    padding: 0.5rem;
+}
+.container-file{
+    gap:1rem;
+    flex-direction: row;
+    display: flex;
+    flex-flow: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+.file_card p,.isi_materi{
+    font-size: .7rem;
+    word-break: break-all;
+    margin-right: .5rem;
+    display: flex;
+    justify-content: left;
+}
+.src{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height:auto;
+    margin-right: 0rem;
+    padding: 0;
+}
+.image-contain{
+    padding: 0;
+    border-left: solid 2px #FD9388;
+}
